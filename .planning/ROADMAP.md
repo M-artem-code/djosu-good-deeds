@@ -103,7 +103,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 03-02-PLAN.md — Add friend, remove outgoing, block incoming with modals (FRND-02, FRND-03, FRND-04)
+- [x] 03-02-PLAN.md — Add friend, remove outgoing, block incoming with modals (FRND-02, FRND-03, FRND-04)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 

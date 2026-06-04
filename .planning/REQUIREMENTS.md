@@ -30,9 +30,9 @@
 ### Friends
 
 - [x] **FRND-01**: User can list friends (tag, displayName)
-- [ ] **FRND-02**: User can add friend by tag; duplicate shows 409
-- [ ] **FRND-03**: User can remove friendship
-- [ ] **FRND-04**: User can revoke incoming friendship by tag
+- [x] **FRND-02**: User can add friend by tag; duplicate shows 409
+- [x] **FRND-03**: User can remove friendship
+- [x] **FRND-04**: User can revoke incoming friendship by tag
 - [ ] **FRND-05**: User can open friend page by tag and see friend's deeds (not own private fields)
 - [ ] **FRND-06**: Access to non-friend or unknown tag shows appropriate error (403/404 per API)
 
@@ -84,9 +84,9 @@
 | DEED-04 | Phase 2 | Pending |
 | DEED-05 | Phase 2 | Pending |
 | FRND-01 | Phase 3 | Complete |
-| FRND-02 | Phase 3 | Pending |
-| FRND-03 | Phase 3 | Pending |
-| FRND-04 | Phase 3 | Pending |
+| FRND-02 | Phase 3 | Complete |
+| FRND-03 | Phase 3 | Complete |
+| FRND-04 | Phase 3 | Complete |
 | FRND-05 | Phase 3 | Pending |
 | FRND-06 | Phase 3 | Pending |
 | PROF-01 | Phase 4 | Pending |
