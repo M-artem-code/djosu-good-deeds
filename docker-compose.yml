@@ -1,0 +1,31 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      MONGODB_URI: mongodb://mongo:27017/djosu
+      JWT_SECRET: change-me-in-production
+      CORS_ORIGIN: http://localhost:3000
+      JWT_EXPIRES_IN: 7d
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+volumes:
+  mongo_data:
