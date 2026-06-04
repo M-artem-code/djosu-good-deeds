@@ -62,8 +62,21 @@ Plans:
   4. User can delete a deed from the list
   5. Submitting empty or whitespace-only title shows validation error (400) without silent failure
 
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — Deed types, getDeeds, view-only cards, sections, loading/empty (DEED-01)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 02-02-PLAN.md — AddDeedForm, createDeed, validation mapping (DEED-02, DEED-05)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 02-03-PLAN.md — Inline edit, status PATCH, delete modal (DEED-03, DEED-04)
 
 ### Phase 3: Friends & Shared Deeds
 
@@ -107,7 +120,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
-| 2. My Deeds | 0/TBD | Not started | - |
+| 2. My Deeds | 0/3 | Planned | - |
 | 3. Friends & Shared Deeds | 0/TBD | Not started | - |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
 
