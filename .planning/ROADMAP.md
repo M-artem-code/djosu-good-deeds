@@ -93,8 +93,21 @@ Plans:
   5. User can open `/friends/[tag]` and see that friend's deeds (no email or other private fields)
   6. Access to a non-friend or unknown tag shows the appropriate error (403/404 per API)
 
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — Friends list: types, getFriends, intro blurb, cards, loading/error/empty (FRND-01)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-02-PLAN.md — Add friend, remove outgoing, block incoming with modals (FRND-02, FRND-03, FRND-04)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-03-PLAN.md — Friend deeds page read-only, 403 state, usersApi displayName (FRND-05, FRND-06)
 
 ### Phase 4: Profile, Settings & Polish
 
@@ -121,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
 | 2. My Deeds | 3/3 | Complete   | 2026-06-04 |
-| 3. Friends & Shared Deeds | 0/TBD | Not started | - |
+| 3. Friends & Shared Deeds | 0/3 | Not started | - |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
 
 ---
