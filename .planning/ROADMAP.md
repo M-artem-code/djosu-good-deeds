@@ -28,8 +28,13 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
   3. User can log out and loses access to protected routes
   4. Unauthenticated access to protected routes redirects to login
   5. Responsive navigation between main sections works; Bearer token is attached to `/api` requests and API errors show user-visible messages (401 → login, 409 conflict, etc.)
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 01-01-PLAN.md — Walking skeleton: Redux/RTK Query, login, minimal AuthGuard, /deeds stub
+- [ ] 01-02-PLAN.md — Register flow, session refresh hydration, guest auth guard
+- [ ] 01-03-PLAN.md — App shell: AppNav, ErrorBanner, logout, friends/settings stubs
 
 ### Phase 2: My Deeds
 **Goal**: Users can manage their own deeds list end-to-end in the UI
@@ -80,7 +85,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. App Shell & Authentication | 0/TBD | Not started | - |
+| 1. App Shell & Authentication | 0/3 | Not started | - |
 | 2. My Deeds | 0/TBD | Not started | - |
 | 3. Friends & Shared Deeds | 0/TBD | Not started | - |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
