@@ -8,7 +8,7 @@ out/
 coverage/
 *.tsbuildinfo
 
-# Env & secrets
+# Env & secrets (keep *.example templates)
 .env
 .env.*
 !.env.example
@@ -26,20 +26,29 @@ Thumbs.db
 # Docker / local data
 mongo_data/
 
-# IDE / AI / planning (GSD, Cursor, Claude)
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# AI / planning (GSD, Cursor, Claude — not app source)
 .planning/
 .gsd/
 .cursor/
 .claude/
 *.planning
 agent-transcripts/
-.idea/
-*.pem
+CLAUDE.md
+AGENTS.md
 
-# Vercel / misc
+# Vercel / package managers
 .vercel/
 .pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+
+# Tool caches
+.eslintcache

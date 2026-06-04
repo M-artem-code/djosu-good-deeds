@@ -1,0 +1,1 @@
+export { DeedSkeletonCard } from "./DeedSkeletonCard";
