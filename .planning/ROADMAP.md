@@ -121,8 +121,21 @@ Plans:
   3. User can delete account with confirmation; on 204 they are redirected out of the app (login or public page)
   4. List pages (deeds, friends) show loading indicators and helpful empty states when there is no data
 
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: yes
+
+Plans:
+**Wave 1**
+
+- [ ] 04-01-PLAN.md — Profile view + edit: getMe/updateMe, ProfileSettingsCard, auth sync (PROF-01, PROF-02)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 04-02-PLAN.md — Delete account: deleteMe modal, clearSession redirect, login banner (PROF-03)
+
+**Wave 3** *(blocked on Wave 1 completion; parallel-safe with Wave 2)*
+
+- [ ] 04-03-PLAN.md — List UX polish: skeletons, error+retry, empty copy on /deeds and /friends (UX-04)
 
 ## Progress
 
@@ -134,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
 | 2. My Deeds | 3/3 | Complete   | 2026-06-04 |
 | 3. Friends & Shared Deeds | 2/3 | In Progress|  |
-| 4. Profile, Settings & Polish | 0/TBD | Not started | - |
+| 4. Profile, Settings & Polish | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-06-04*
