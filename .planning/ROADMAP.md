@@ -38,15 +38,15 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Walking skeleton: Redux/RTK Query, login, minimal AuthGuard, /deeds stub
+- [x] 01-01-PLAN.md — Walking skeleton: Redux/RTK Query, login, minimal AuthGuard, /deeds stub
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — Register flow, session refresh hydration, guest auth guard
+- [x] 01-02-PLAN.md — Register flow, session refresh hydration, guest auth guard
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03-PLAN.md — App shell: AppNav, ErrorBanner, logout, friends/settings stubs
+- [x] 01-03-PLAN.md — App shell: AppNav, ErrorBanner, logout, friends/settings stubs
 
 ### Phase 2: My Deeds
 
@@ -106,7 +106,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. App Shell & Authentication | 0/3 | Not started | - |
+| 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
 | 2. My Deeds | 0/TBD | Not started | - |
 | 3. Friends & Shared Deeds | 0/TBD | Not started | - |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
