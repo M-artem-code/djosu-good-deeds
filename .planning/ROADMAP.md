@@ -107,7 +107,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-03-PLAN.md — Friend deeds page read-only, 403 state, usersApi displayName (FRND-05, FRND-06)
+- [x] 03-03-PLAN.md — Friend deeds page read-only, 403 state, usersApi displayName (FRND-05, FRND-06)
 
 ### Phase 4: Profile, Settings & Polish
 
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
 | 2. My Deeds | 3/3 | Complete   | 2026-06-04 |
-| 3. Friends & Shared Deeds | 0/3 | Not started | - |
+| 3. Friends & Shared Deeds | 2/3 | In Progress|  |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
 
 ---
