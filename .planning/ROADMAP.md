@@ -99,7 +99,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01-PLAN.md — Friends list: types, getFriends, intro blurb, cards, loading/error/empty (FRND-01)
+- [x] 03-01-PLAN.md — Friends list: types, getFriends, intro blurb, cards, loading/error/empty (FRND-01)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 

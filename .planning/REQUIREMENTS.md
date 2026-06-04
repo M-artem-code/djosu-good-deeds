@@ -29,7 +29,7 @@
 
 ### Friends
 
-- [ ] **FRND-01**: User can list friends (tag, displayName)
+- [x] **FRND-01**: User can list friends (tag, displayName)
 - [ ] **FRND-02**: User can add friend by tag; duplicate shows 409
 - [ ] **FRND-03**: User can remove friendship
 - [ ] **FRND-04**: User can revoke incoming friendship by tag
@@ -83,7 +83,7 @@
 | DEED-03 | Phase 2 | Pending |
 | DEED-04 | Phase 2 | Pending |
 | DEED-05 | Phase 2 | Pending |
-| FRND-01 | Phase 3 | Pending |
+| FRND-01 | Phase 3 | Complete |
 | FRND-02 | Phase 3 | Pending |
 | FRND-03 | Phase 3 | Pending |
 | FRND-04 | Phase 3 | Pending |
