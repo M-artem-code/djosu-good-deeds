@@ -13,7 +13,7 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 
 - [x] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
 - [x] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation (completed 2026-06-04)
-- [ ] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag
+- [x] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag (completed 2026-06-04)
 - [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
 
 ## Phase Details
