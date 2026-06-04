@@ -23,7 +23,7 @@ AppModule
 | Module | Зависимости | Экспорт |
 |--------|-------------|---------|
 | DatabaseModule | Config | — |
-| AuthModule | Users, JWT | JwtModule |
+| AuthModule | Users, JWT | JwtModule; регистрирует APP_GUARD (JwtAuthGuard) |
 | UsersModule | Deeds, Friends (forwardRef) | UsersService |
 | DeedsModule | Mongoose Deed | DeedsService |
 | FriendsModule | Users (forwardRef), Deeds | FriendsService |
@@ -36,14 +36,14 @@ AppModule
 
 1. `POST /api/auth/register` или `login` → `{ accessToken, user }`
 2. Клиент отправляет `Authorization: Bearer <token>`
-3. `JwtAuthGuard` (global) → `JwtStrategy` → payload `sub` = userId
-4. `@CurrentUser()` в контроллерах — `UserDocument` без `passwordHash`
+3. `JwtAuthGuard` (global, `auth/guards/`) → `JwtStrategy` (`auth/strategies/`) → payload `sub` = userId
+4. `@CurrentUser()` (`auth/decorators/`) в контроллерах — `UserDocument` без `passwordHash`
 5. **PasswordService** (`auth/password.service.ts`) — bcrypt hash/compare; `AuthService` не импортирует bcrypt напрямую
 
 ## Global guard и Swagger
 
-- `APP_GUARD` → `JwtAuthGuard` на всех routes (`@Public()` → skip)
-- `@Public()` на `GET /api/health` и всём `AuthController`
+- `APP_GUARD` → `JwtAuthGuard` регистрируется в **AuthModule** (не в AppModule)
+- `@Public()` (`auth/decorators/public.decorator.ts`) на `GET /api/health` и всём `AuthController`
 - Swagger: `configureApp()` монтирует `/api/docs` и `/api/docs-json` **только** при `NODE_ENV !== 'production'` (в т.ч. `undefined` при `npm run start:dev`) — UI открывается без Bearer
 - **Production:** `SwaggerModule.setup` не вызывается → `GET /api/docs` → **404** (маршрута нет; обход в guard не нужен). См. `docs/DECISIONS.md` §6
 
@@ -88,12 +88,24 @@ AppModule
 
 ```
 src/
-├── common/          # bootstrap, guards, decorators, dto, validators, utils, constants
+├── common/          # bootstrap, dto, validators, utils (без auth-специфики)
 ├── config/          # configuration.ts
 ├── database/        # DatabaseModule
 ├── auth/
+│   ├── constants/
+│   ├── decorators/   # @Public(), @CurrentUser()
+│   ├── dto/
+│   ├── guards/       # JwtAuthGuard (+ APP_GUARD)
+│   ├── interfaces/   # JwtPayload
+│   ├── strategies/   # JwtStrategy
+│   ├── auth.controller.ts
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   └── password.service.ts
 ├── users/
 ├── deeds/
 ├── friends/
 └── main.ts
 ```
+
+**AuthModule** владеет всей JWT-инфраструктурой: guard, strategy, `@Public()`, `@CurrentUser()`, auth-константы. `common/` — только cross-cutting утилиты без привязки к auth.

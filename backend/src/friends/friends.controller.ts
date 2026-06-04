@@ -10,7 +10,7 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { normalizeTag } from '../common/utils/normalize-tag';
 import { DeedPublicDto } from '../deeds/dto/deed-public.dto';
 import type { UserDocument } from '../users/schemas/user.schema';

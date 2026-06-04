@@ -1,7 +1,7 @@
 "use client";
 
 import { DeedCardView, type DeedPublic } from "@/entities/deed";
-import { useDeedMarkStatus } from "@/features/deed/mark-status";
+import { useDeedMarkStatus } from "../model/useDeedMarkStatus";
 import { DeedEditForm } from "./DeedEditForm";
 
 export type EditableDeedCardProps = {

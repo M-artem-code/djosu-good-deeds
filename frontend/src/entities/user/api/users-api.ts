@@ -1,5 +1,4 @@
-import type { UserByTag } from "@/entities/friend";
-import type { UserPublic } from "../model/types";
+import type { UserByTag, UserPublic } from "../model/types";
 import { baseApi } from "@/shared/api";
 
 export type UpdateMeBody = Partial<Pick<UserPublic, "displayName" | "tag">>;

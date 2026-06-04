@@ -5,7 +5,7 @@ import { FriendsList } from "@/entities/friend";
 import { RemoveFriendModal } from "@/features/friend/remove";
 import { useFriendsPage } from "../model/useFriendsPage";
 import { FriendSkeletonCard } from "@/shared/ui";
-import { ListQueryState, PageHeader, PageShell } from "@/widgets";
+import { ListQueryState, PageHeader, PageShell } from "@/shared/ui";
 
 const FRIENDS_SUBTITLE =
   "Adding someone lets you see their deeds. They won't see yours unless they add you.";

@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import {
   DUMMY_PASSWORD_HASH,
   INVALID_CREDENTIALS_MESSAGE,
-} from '../common/constants/auth.constants';
+} from './constants/auth.constants';
 import { toPublicUser } from '../common/utils/to-public-user';
 import { UserDocument } from '../users/schemas/user.schema';
 import { UsersService } from '../users/users.service';

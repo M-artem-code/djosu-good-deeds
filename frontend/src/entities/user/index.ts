@@ -1,4 +1,4 @@
-export type { UserPublic } from "./model/types";
+export type { UserByTag, UserPublic } from "./model/types";
 export type { AuthResponse } from "./model/auth-types";
 export {
   usersApi,

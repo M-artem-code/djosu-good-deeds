@@ -1,12 +1,12 @@
-import type { FormEvent } from "react";
 import {
   PrimaryButton,
   TextAreaField,
   TextButton,
   TextField,
 } from "@/shared/ui";
+import type { FormEvent } from "react";
 
-export type AddDeedFormState = {
+type AddDeedFormState = {
   expanded: boolean;
   reveal: () => void;
   handleCollapse: () => void;

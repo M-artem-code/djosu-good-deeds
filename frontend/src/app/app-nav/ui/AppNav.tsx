@@ -1,11 +1,11 @@
 "use client";
 
+import { LogoutConfirmModal } from "@/features/auth/logout";
+import { useAppSelector } from "@/shared/api";
+import { TextButton } from "@/shared/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { LogoutConfirmModal } from "@/features/auth/logout";
-import { TextButton } from "@/shared/ui";
-import { useAppSelector } from "@/shared/api";
 
 const NAV_LINKS = [
   { href: "/deeds", label: "Deeds" },
@@ -25,7 +25,11 @@ function MenuIcon({ open }: { open: boolean }) {
       aria-hidden="true"
     >
       {open ? (
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
       ) : (
         <path
           strokeLinecap="round"
@@ -72,7 +76,11 @@ export function AppNav() {
 
         <nav aria-label="Main" className="hidden items-center gap-4 md:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className={linkClass(link.href)}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={linkClass(link.href)}
+            >
               {link.label}
             </Link>
           ))}

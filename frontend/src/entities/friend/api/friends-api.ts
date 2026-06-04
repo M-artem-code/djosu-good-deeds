@@ -1,4 +1,4 @@
-import type { DeedPublic } from "@/entities/deed";
+import type { DeedPublic } from "@/entities/deed/@x/friend";
 import type { AddFriendBody, FriendItem } from "../model/types";
 import { baseApi } from "@/shared/api";
 

@@ -6,3 +6,9 @@ export interface UserPublic {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface UserByTag {
+  _id: string;
+  displayName: string;
+  tag: string;
+}

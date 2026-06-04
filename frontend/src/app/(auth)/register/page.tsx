@@ -1,1 +1,1 @@
-export { default } from "@/pages/register";
+export { default } from "@/views/register";

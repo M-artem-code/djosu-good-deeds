@@ -94,7 +94,7 @@ npm run build
 
 ## Frontend (кратко)
 
-Слои FSD: `app` → `views` (в коде `@/pages/*`) → `widgets` → `features` → `entities` → `shared`.
+Слои FSD: `app` → `views` (`@/views/*`) → `features` → `entities` → `shared`.
 
 Подробнее: [frontend/docs/FSD.md](frontend/docs/FSD.md).
 

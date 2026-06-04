@@ -19,19 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/pages/deeds": ["./src/views/deeds/entry.ts"],
-      "@/pages/friends": ["./src/views/friends/entry.ts"],
-      "@/pages/friend-deeds": ["./src/views/friend-deeds/entry.ts"],
-      "@/pages/login": ["./src/views/login/entry.ts"],
-      "@/pages/register": ["./src/views/register/entry.ts"],
-      "@/pages/settings": ["./src/views/settings/entry.ts"],
-      "@/pages/home": ["./src/views/home/entry.ts"],
-      "@app/*": ["./src/app/*"],
-      "@widgets/*": ["./src/widgets/*"],
-      "@features/*": ["./src/features/*"],
-      "@entities/*": ["./src/entities/*"],
-      "@shared/*": ["./src/shared/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [

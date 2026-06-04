@@ -9,8 +9,10 @@ import { useDeedsPage } from "../model/useDeedsPage";
 import {
   DeedSkeletonCard,
   EmptyState,
+  ListQueryState,
+  PageHeader,
+  PageShell,
 } from "@/shared/ui";
-import { ListQueryState, PageHeader, PageShell } from "@/widgets";
 
 export default function DeedsPage() {
   const { deeds, isLoading, isError, isEmpty, refetch } = useDeedsPage();

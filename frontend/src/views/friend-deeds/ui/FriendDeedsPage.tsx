@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { DeedCardReadOnlyView, DeedGroupedList } from "@/entities/deed";
 import { ForbiddenDeedsView, FriendDeedsHeader } from "@/entities/friend";
 import { DeedSkeletonCard, EmptyState, Loader } from "@/shared/ui";
-import { ListQueryState, PageShell } from "@/widgets";
+import { ListQueryState, PageShell } from "@/shared/ui";
 import { useFriendDeedsPage } from "../model/useFriendDeedsPage";
 
 function FriendDeedsPageContent() {

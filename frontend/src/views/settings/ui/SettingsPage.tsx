@@ -3,7 +3,7 @@
 import { DeleteAccountModal } from "@/features/account/delete";
 import { ProfileSettingsSection } from "@/features/profile/update";
 import { ProfileSkeletonCard, TextButton } from "@/shared/ui";
-import { ListQueryState, PageHeader, PageShell } from "@/widgets";
+import { ListQueryState, PageHeader, PageShell } from "@/shared/ui";
 import { useSettingsPage } from "../model/useSettingsPage";
 
 export default function SettingsPage() {

@@ -1,8 +1,4 @@
-export interface UserByTag {
-  _id: string;
-  displayName: string;
-  tag: string;
-}
+import type { UserByTag } from "@/entities/user/@x/friend";
 
 export interface FriendItem {
   _id: string;

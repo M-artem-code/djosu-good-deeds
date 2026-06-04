@@ -17,7 +17,7 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import type { UserDocument } from '../users/schemas/user.schema';
 import { DeedsService } from './deeds.service';
 import { CreateDeedDto } from './dto/create-deed.dto';

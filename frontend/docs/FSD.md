@@ -1,41 +1,58 @@
 # Frontend FSD (Djosu Good Deeds)
 
-## `src/views/` + import `@/pages/*`
+## `src/views/` — FSD pages layer
 
-Next.js reserves a top-level **`src/pages/`** directory for the **Pages Router**. Any `index.ts` / `entry.ts` there that re-exports a page component can register duplicate routes (`/deeds`, `/login`, …) alongside `src/app/`.
+Screen code lives in **`src/views/<screen>/`**. Do not create **`src/pages/`** (Next.js Pages Router).
 
-The FSD **pages** layer therefore lives in **`src/views/`**, imported as **`@/pages/<screen>`** via `tsconfig` paths (FSD name = pages, physical folder = views).
+| Segment | Role |
+|---------|------|
+| `ui/` | Page component (default export) |
+| `model/` | Hooks and page-local state |
+| `index.ts` | Public API: `export { default } from "./ui/..."` |
+
+Routes import screens as **`@/views/<screen>`** (via `@/*` → `src/*`).
+
+## `src/app/` — Next.js routes
+
+**Route groups** (скобки в пути — не в URL): отдельные зоны для гостя и для залогиненного пользователя.
+
+| Group | Routes (URL) | Layout |
+|-------|----------------|--------|
+| `(authenticated)/` | `/deeds`, `/friends`, `/friends/[tag]`, `/settings` | `authenticated-layout.tsx` (nav + AuthGuard) |
+| `(auth)/` | `/login`, `/register` | `guest-layout.tsx` (GuestAuthGuard) |
+| `app/` root | `/` | root `layout.tsx` only |
+
+`page.tsx` в группах: `export { default } from "@/views/<screen>"`.
+
+Shared layout modules: `app/authenticated-layout.tsx`, `app/guest-layout.tsx`, `app/app-nav/`.
 
 ## Layers
 
-| Layer | Path | Import |
-|-------|------|--------|
-| app | `src/app/` | — |
-| pages | `src/views/` | `@/pages/deeds`, `@/pages/login`, … |
-| widgets | `src/widgets/` | `@/widgets` |
-| features | `src/features/` | `@/features/<slice>` |
-| entities | `src/entities/` | `@/entities/<entity>` |
-| shared | `src/shared/` | `@/shared/ui`, `@/shared/api`, `@/shared/lib` |
-
-Public API per screen: `src/views/<screen>/entry.ts` (not `index.ts`) — **only** `export { default }` from the page component; hooks stay in `model/` and are imported relatively from `ui/`.
+| Layer | Path | Import example |
+|-------|------|----------------|
+| app | `src/app/` | `@/app/app-nav` |
+| pages | `src/views/` | `@/views/deeds` |
+| features | `src/features/<slice>/` | `@/features/deed/create` |
+| entities | `src/entities/<entity>/` | `@/entities/deed` |
+| shared | `src/shared/` | `@/shared/ui`, `@/shared/api` |
 
 ## Dependency rule
 
 ```
-app → pages, widgets, shared
-pages → widgets, features, entities, shared
-widgets → features, entities, shared
+app → views, features, entities, shared
+views → features, entities, shared
 features → entities, shared
 entities → shared only
 ```
 
-**entities must not import features.** Deed lists use `DeedGroupedList` + `renderCard`. Own deeds: `EditableDeedCard` (`features/deed/edit`). Friend deeds (read-only): `DeedCardReadOnlyView` from `entities/deed` — not `EditableDeedCard`.
+Page chrome (`PageShell`, `PageHeader`, `ListQueryState`) is in **`shared/ui`**. **`AppNav`** is in **`app/app-nav`** (uses auth features).
 
 ## Adding a screen
 
-1. `src/views/<name>/ui/<Name>Page.tsx` — default export; add `Suspense` here when using `useSearchParams`.
-2. `src/views/<name>/entry.ts` — `export { default } from "./ui/..."` only (no hook re-exports).
-3. `src/app/.../page.tsx` — `export { default } from "@/pages/<name>"`.
+1. `src/views/<name>/ui/<Name>Page.tsx` — default export.
+2. `src/views/<name>/index.ts` — re-export default from `ui/`.
+3. Protected → `src/app/(authenticated)/<route>/page.tsx`; guest → `src/app/(auth)/<route>/page.tsx`.
+4. `export { default } from "@/views/<name>"` — layout от группы `(authenticated)` или `(auth)`.
 
 ## RTK
 

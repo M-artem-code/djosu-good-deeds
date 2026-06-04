@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, type ReactNode } from "react";
-import { TextButton } from "@/shared/ui";
+import { TextButton } from "../text-button";
 
 interface ConfirmDialogProps {
   title: string;

@@ -1,8 +1,4 @@
-export type {
-  FriendItem,
-  AddFriendBody,
-  UserByTag,
-} from "./model/types";
+export type { FriendItem, AddFriendBody } from "./model/types";
 export {
   friendsApi,
   useGetFriendsQuery,

@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { TextButton } from "@/shared/ui";
+import { TextButton } from "../../text-button";
 
 interface ListQueryStateProps {
   isLoading: boolean;

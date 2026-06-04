@@ -7,7 +7,7 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { UserByTagDto } from '../common/dto/user-by-tag.dto';
 import { UserPublicDto } from '../common/dto/user-public.dto';
 import { normalizeTag } from '../common/utils/normalize-tag';
