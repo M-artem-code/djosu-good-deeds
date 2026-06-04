@@ -11,7 +11,7 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 - Integer phases (1, 2, 3, 4): Planned milestone work
 - Decimal phases (e.g. 2.1): Urgent insertions via `/gsd-phase insert`
 
-- [ ] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
+- [x] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
 - [ ] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation
 - [ ] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag
 - [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
