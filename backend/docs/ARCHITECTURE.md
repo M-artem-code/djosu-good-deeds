@@ -58,7 +58,7 @@ AppModule
 1. `normalizeTag(tag)` → пользователь существует **и** `isFriend(viewerId, friendId)` — иначе единый **403** (в т.ч. unknown tag)
 2. `deedsService.findAllByOwner(friendId)` — read-only
 
-`GET /api/friends` → массив `FriendItemDto[]`. Revoke: `DELETE /friends/:friendshipId` (инициатор), `DELETE /friends/incoming/:tag` (жертва).
+`GET /api/friends` → массив `FriendItemDto[]`. Удаление исходящей дружбы: `DELETE /friends/:friendshipId` (только инициатор ребра).
 
 ## Account deletion
 

@@ -39,14 +39,6 @@ export class FriendsController {
     return this.friendsService.listFriends(user._id.toString());
   }
 
-  @Delete('incoming/:tag')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiNoContentResponse({ description: 'Revoke someone who added you by their tag' })
-  @ApiNotFoundResponse({ description: 'Friendship not found' })
-  revokeIncoming(@CurrentUser() user: UserDocument, @Param('tag') tag: string) {
-    return this.friendsService.revokeIncomingFriend(user._id.toString(), normalizeTag(tag));
-  }
-
   @Get(':tag/deeds')
   @ApiOkResponse({ type: [DeedPublicDto] })
   @ApiForbiddenResponse({

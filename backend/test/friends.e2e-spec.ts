@@ -163,46 +163,6 @@ describe('Friends (e2e)', () => {
       .expect(404);
   });
 
-  describe('revoke incoming', () => {
-    it('Bob GET alice deeds returns 200 while friendship active', () => {
-      return request(app.getHttpServer())
-        .get(`/api/friends/${aliceTag}/deeds`)
-        .set('Authorization', `Bearer ${tokenBob}`)
-        .expect(200);
-    });
-
-    it('Alice DELETE /api/friends/incoming/:tag revokes Bob', () => {
-      return request(app.getHttpServer())
-        .delete(`/api/friends/incoming/${bobTag}`)
-        .set('Authorization', `Bearer ${tokenAlice}`)
-        .expect(204);
-    });
-
-    it('Bob GET alice deeds returns 403 after revoke', () => {
-      return request(app.getHttpServer())
-        .get(`/api/friends/${aliceTag}/deeds`)
-        .set('Authorization', `Bearer ${tokenBob}`)
-        .expect(403);
-    });
-
-    it('Alice DELETE incoming again returns 404', () => {
-      return request(app.getHttpServer())
-        .delete(`/api/friends/incoming/${bobTag}`)
-        .set('Authorization', `Bearer ${tokenAlice}`)
-        .expect(404);
-    });
-  });
-
-  it('POST /api/friends re-adds alice after revoke', async () => {
-    const res = await request(app.getHttpServer())
-      .post('/api/friends')
-      .set('Authorization', `Bearer ${tokenBob}`)
-      .send({ tag: aliceTag })
-      .expect(201);
-
-    friendshipId = res.body._id;
-  });
-
   it('DELETE /api/friends/:friendshipId returns 204', () => {
     return request(app.getHttpServer())
       .delete(`/api/friends/${friendshipId}`)
@@ -215,6 +175,16 @@ describe('Friends (e2e)', () => {
       .get(`/api/friends/${aliceTag}/deeds`)
       .set('Authorization', `Bearer ${tokenBob}`)
       .expect(403);
+  });
+
+  it('POST /api/friends re-adds friend after unfriend', async () => {
+    const res = await request(app.getHttpServer())
+      .post('/api/friends')
+      .set('Authorization', `Bearer ${tokenBob}`)
+      .send({ tag: aliceTag })
+      .expect(201);
+
+    expect(res.body.friend.tag).toBe(aliceTag);
   });
 });
 

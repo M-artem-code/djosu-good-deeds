@@ -18,12 +18,9 @@
 
 **Privacy (deeds by tag):** `GET /friends/:tag/deeds` возвращает **403** и для несуществующего tag, и для «не друг» — без различия (anti-enumeration). `POST /friends` по-прежнему **404** для unknown tag (нужно при добавлении).
 
-**Revoke:**
+**Unfriend (outgoing only):** `DELETE /friends/:friendshipId` — удаляет своё ребро `userId=me → friendId=other`. Отзыв «входящей» дружбы жертвой **не в продукте** (FRND-04 out of scope).
 
-- **Инициатор:** `DELETE /friends/:friendshipId` — удаляет своё ребро `userId=me → friendId=other`.
-- **«Жертва»:** `DELETE /friends/incoming/:tag` — удаляет ребро `userId=other → friendId=me` (кто добавил — по его tag). Нет friendship → единый **404** (без enumeration).
-
-**Alternatives rejected:** Mutual request/accept — больше состояний и эндпоинтов.
+**Alternatives rejected:** Mutual request/accept — больше состояний и эндпоинтов; revoke incoming by tag — убрано из v1 UI.
 
 ---
 

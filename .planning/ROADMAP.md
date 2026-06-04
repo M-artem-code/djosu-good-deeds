@@ -13,7 +13,7 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 
 - [x] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
 - [x] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation (completed 2026-06-04)
-- [x] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag (completed 2026-06-04)
+- [x] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove, friend deeds by tag (completed 2026-06-04)
 - [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
 
 ## Phase Details
@@ -83,15 +83,14 @@ Plans:
 **Goal**: Users can manage friends and view friends' deeds by tag
 **Mode:** mvp
 **Depends on**: Phase 2
-**Requirements**: FRND-01, FRND-02, FRND-03, FRND-04, FRND-05, FRND-06
+**Requirements**: FRND-01, FRND-02, FRND-03, FRND-05, FRND-06 (FRND-04 out of scope)
 **Success Criteria** (what must be TRUE):
 
   1. User sees friends list with tag and displayName
   2. User can add a friend by tag; duplicate friendship shows 409 with a clear message
   3. User can remove an outgoing friendship from the list
-  4. User can revoke an incoming friendship by tag
-  5. User can open `/friends/[tag]` and see that friend's deeds (no email or other private fields)
-  6. Access to a non-friend or unknown tag shows the appropriate error (403/404 per API)
+  4. User can open `/friends/[tag]` and see that friend's deeds (no email or other private fields)
+  5. Access to a non-friend or unknown tag shows the appropriate error (403 unified on deeds per API)
 
 **Plans**: 3 plans
 **UI hint**: yes
@@ -103,7 +102,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [x] 03-02-PLAN.md — Add friend, remove outgoing, block incoming with modals (FRND-02, FRND-03, FRND-04)
+- [x] 03-02-PLAN.md — Add friend, remove outgoing with modals (FRND-02, FRND-03)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 

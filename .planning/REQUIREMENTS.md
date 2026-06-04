@@ -32,7 +32,6 @@
 - [x] **FRND-01**: User can list friends (tag, displayName)
 - [x] **FRND-02**: User can add friend by tag; duplicate shows 409
 - [x] **FRND-03**: User can remove friendship
-- [x] **FRND-04**: User can revoke incoming friendship by tag
 - [x] **FRND-05**: User can open friend page by tag and see friend's deeds (not own private fields)
 - [x] **FRND-06**: Access to non-friend or unknown tag shows appropriate error (403/404 per API)
 
@@ -64,6 +63,7 @@
 | Rate limiting / block | Not in backend |
 | Refresh tokens | Access-only JWT by design |
 | Mutual friendship / accept | One-way model in DECISIONS §2 |
+| Revoke incoming friendship by tag (FRND-04) | Removed from product — no victim-side revoke UI or API in v1 |
 | Backend feature changes | Backend validated; v1 is FE integration |
 
 ## Traceability
@@ -86,7 +86,7 @@
 | FRND-01 | Phase 3 | Complete |
 | FRND-02 | Phase 3 | Complete |
 | FRND-03 | Phase 3 | Complete |
-| FRND-04 | Phase 3 | Complete |
+| FRND-04 | — | Out of scope |
 | FRND-05 | Phase 3 | Complete |
 | FRND-06 | Phase 3 | Complete |
 | PROF-01 | Phase 4 | Pending |

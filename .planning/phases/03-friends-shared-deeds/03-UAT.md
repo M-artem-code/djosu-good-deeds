@@ -3,7 +3,7 @@ status: complete
 phase: 03-friends-shared-deeds
 source: 03-01-SUMMARY.md, 03-02-SUMMARY.md, 03-03-SUMMARY.md, 03-VERIFICATION.md
 started: 2026-06-04T18:30:00Z
-updated: 2026-06-04T19:20:00Z
+updated: 2026-06-04T20:00:00Z
 ---
 
 ## Current Test
@@ -21,9 +21,8 @@ expected: Remove friend? modal with Keep friend; row disappears after confirm; c
 result: pass
 
 ### 3. Block incoming with no friendship
-expected: After Block confirm on a tag with no incoming friendship, inline message is exactly "No one with that tag has added you"
-result: skipped
-reason: User chose to skip during UAT
+expected: N/A — revoke incoming / block section removed from product (FRND-04 out of scope)
+result: n/a
 
 ### 4. Unified 403 on non-friend or unknown tag
 expected: /friends/{unknown-tag} and /friends/{valid-tag-you-dont-follow} both show "You can't view this user's deeds" and Back to friends — same copy, no email, no raw API message
@@ -39,7 +38,8 @@ total: 5
 passed: 4
 issues: 0
 pending: 0
-skipped: 1
+skipped: 0
+n/a: 1
 blocked: 0
 
 ## Gaps

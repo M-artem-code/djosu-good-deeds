@@ -84,24 +84,6 @@ export class FriendsService {
     }
   }
 
-  async revokeIncomingFriend(currentUserId: string, tag: string): Promise<void> {
-    const initiator = await this.usersService.findByTag(normalizeTag(tag));
-    if (!initiator) {
-      throw new NotFoundException('Friendship not found');
-    }
-
-    const result = await this.friendshipModel
-      .deleteOne({
-        userId: initiator._id,
-        friendId: new Types.ObjectId(currentUserId),
-      })
-      .exec();
-
-    if (result.deletedCount === 0) {
-      throw new NotFoundException('Friendship not found');
-    }
-  }
-
   async isFriend(userId: string, friendId: string): Promise<boolean> {
     if (!isValidObjectId(userId) || !isValidObjectId(friendId)) {
       return false;
