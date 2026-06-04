@@ -2,6 +2,8 @@
 
 NestJS REST API для списка добрых дел и друзей по публичному `tag`.
 
+Полный быстрый старт (Mongo, frontend, CI): [корневой README](../README.md).
+
 ## Requirements
 
 - Node.js 20+
