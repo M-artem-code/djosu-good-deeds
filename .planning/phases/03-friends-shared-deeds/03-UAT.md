@@ -1,0 +1,45 @@
+---
+status: complete
+phase: 03-friends-shared-deeds
+source: 03-01-SUMMARY.md, 03-02-SUMMARY.md, 03-03-SUMMARY.md, 03-VERIFICATION.md
+started: 2026-06-04T18:30:00Z
+updated: 2026-06-04T19:20:00Z
+---
+
+## Current Test
+
+[testing complete]
+
+## Tests
+
+### 1. Add friend and duplicate 409 inline
+expected: First add succeeds and list refreshes; second attempt shows inline 409 message under the tag field (not a global banner)
+result: pass
+
+### 2. Remove outgoing friend via modal
+expected: Remove friend? modal with Keep friend; row disappears after confirm; clicking Remove does not navigate to /friends/[tag]
+result: pass
+
+### 3. Block incoming with no friendship
+expected: After Block confirm on a tag with no incoming friendship, inline message is exactly "No one with that tag has added you"
+result: skipped
+reason: User chose to skip during UAT
+
+### 4. Unified 403 on non-friend or unknown tag
+expected: /friends/{unknown-tag} and /friends/{valid-tag-you-dont-follow} both show "You can't view this user's deeds" and Back to friends — same copy, no email, no raw API message
+result: pass
+
+### 5. Read-only friend deeds from card click
+expected: From /friends, click a friend card — header shows @{tag}'s deeds and displayName; deeds are read-only (no edit/delete/status); friend with zero deeds shows No deeds yet
+result: pass
+
+## Summary
+
+total: 5
+passed: 4
+issues: 0
+pending: 0
+skipped: 1
+blocked: 0
+
+## Gaps
