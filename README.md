@@ -2,30 +2,24 @@
 
 Тестовое full-stack приложение: регистрация по email и tag, список добрых дел со статусами, друзья по tag и просмотр их дел, настройки профиля.
 
-**Стек**
-
-- **Backend:** NestJS 11, MongoDB (Mongoose), JWT, Swagger, Docker
-- **Frontend:** Next.js 16 (App Router), React 19, Redux Toolkit + RTK Query, Tailwind CSS 4
-- **Инфра:** Docker Compose (MongoDB), GitHub Actions
-
-## Структура репозитория
-
-```
-djosu-good-deeds/
-├── backend/           # REST API (NestJS)
-├── frontend/          # UI (Next.js, git submodule)
-├── docker-compose.yml # MongoDB (+ опционально API)
-├── .github/           # CI
-└── README.md
-```
+**Стек:** NestJS 11 + MongoDB · Next.js 16 (App Router) · Redux Toolkit · Tailwind CSS 4 · Docker
 
 ## Требования
 
-- Node.js 20+
-- Docker Desktop (для MongoDB)
+- Node.js 20+ (в CI — 22)
+- Docker Desktop (MongoDB)
 - npm
 
+## Клонирование
+
+```bash
+git clone https://github.com/M-artem-code/djosu-good-deeds.git
+cd djosu-good-deeds
+```
+
 ## Быстрый старт
+
+Открой **три терминала** (или Mongo в фоне + два процесса).
 
 ### 1. MongoDB
 
@@ -33,7 +27,7 @@ djosu-good-deeds/
 docker compose up mongo -d
 ```
 
-### 2. Backend
+### 2. Backend (порт 3001)
 
 ```bash
 cd backend
@@ -42,59 +36,75 @@ npm ci
 npm run start:dev
 ```
 
+Дождись сообщения, что приложение слушает порт **3001**.
+
 | URL | Назначение |
 |-----|------------|
-| http://localhost:3001/api | API (префикс `/api`) |
-| http://localhost:3001/api/docs | Swagger UI |
 | http://localhost:3001/api/health | Health check |
+| http://localhost:3001/api/docs | Swagger UI |
 
-### 3. Frontend
+### 3. Frontend (порт 3000)
+
+В **новом** терминале из корня репозитория:
 
 ```bash
 cd frontend
-git submodule update --init --recursive   # если клонировали без --recurse-submodules
 cp .env.example .env.local
 npm ci
 npm run dev
 ```
 
-UI: http://localhost:3000
+Открой в браузере: **http://localhost:3000**
 
-Переменная `NEXT_PUBLIC_API_URL` в `frontend/.env.local` должна указывать на backend (по умолчанию `http://localhost:3001`).
+В `frontend/.env.local` по умолчанию:
 
-## Проверки
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
 
-| Часть | Команды |
-|-------|---------|
-| Backend | `cd backend && npm run build` |
-| Backend E2E | `cd backend && npm run test:e2e` (нужна Mongo) |
-| Frontend | `cd frontend && npm run lint && npm run test && npm run build` |
-| CI | GitHub Actions на push/PR в `main` / `master` — backend build + e2e, frontend test + build + lint |
+Если backend на другом хосте/порту — измени эту переменную.
 
-## Frontend architecture
+## Структура репозитория
 
-Слои FSD: `app` → `views` (импорт как `@/pages/*`) → `widgets` → `features` → `entities` → `shared`. Страницы живут в `src/views/`, тонкие маршруты — в `src/app/`. Собственные дела редактируются через `EditableDeedCard`; чужие (друзья) — read-only карточка из `entities/deed`.
+```
+djosu-good-deeds/
+├── backend/           # REST API (NestJS)
+├── frontend/          # UI (Next.js, FSD)
+├── docker-compose.yml # MongoDB (+ опционально API в Docker)
+├── .github/workflows/ # CI
+└── README.md
+```
+
+## Проверки (как в CI)
+
+```bash
+# Backend (Mongo должна быть запущена)
+cd backend
+npm run build
+npm run test:e2e
+
+# Frontend
+cd frontend
+npm run lint
+npm run test
+npm run build
+```
+
+На GitHub: Actions → workflow **CI** (push/PR в `main`).
+
+## Frontend (кратко)
+
+Слои FSD: `app` → `views` (в коде `@/pages/*`) → `widgets` → `features` → `entities` → `shared`.
 
 Подробнее: [frontend/docs/FSD.md](frontend/docs/FSD.md).
 
 ## API
 
-Документация и интерактивные запросы: **Swagger** — http://localhost:3001/api/docs (вне production).
+Swagger: http://localhost:3001/api/docs  
 
-Основные группы: Auth (`/api/auth/*`), Users (`/api/users/*`), Deeds (`/api/deeds`), Friends (`/api/friends`).
+Группы: Auth, Users, Deeds, Friends. Backend: [backend/docs/ARCHITECTURE.md](backend/docs/ARCHITECTURE.md).
 
-Архитектура backend: [backend/docs/ARCHITECTURE.md](backend/docs/ARCHITECTURE.md).
+## Ограничения v1
 
-## Ограничения
-
-- JWT хранится в `localStorage` (без httpOnly cookie в v1).
-- Нет e2e/UI-тестов frontend; проверка — lint, unit-тесты shared API helpers, ручной smoke.
-- Каталог `.planning/` и артефакты GSD/Cursor — только локально, не входят в репозиторий.
-
-## Submodule frontend
-
-`frontend/` — отдельный git-репозиторий (submodule). После клона:
-
-```bash
-git submodule update --init --recursive
-```
+- JWT в `localStorage` (не httpOnly cookie).
+- Нет e2e/UI-тестов frontend; есть unit-тесты helpers и ручной smoke.
