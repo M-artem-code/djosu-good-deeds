@@ -101,4 +101,4 @@
 
 ---
 *Requirements defined: 2026-06-04*
-*Last updated: 2026-06-04 after roadmap draft*
+*Last updated: 2026-06-04 after roadmap creation*

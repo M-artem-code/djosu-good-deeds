@@ -1,0 +1,72 @@
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-06-04)
+
+**Core value:** User can log in, manage own deeds, and view friends' deeds by tag — end-to-end in the UI.
+**Current focus:** Phase 1 — App Shell & Authentication
+
+## Current Position
+
+Phase: 1 of 4 (App Shell & Authentication)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-06-04 — Roadmap created (brownfield frontend MVP)
+
+Progress: [░░░░░░░░░░] 0%
+
+## Performance Metrics
+
+**Velocity:**
+- Total plans completed: 0
+- Average duration: —
+- Total execution time: 0 hours
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| — | — | — | — |
+
+**Recent Trend:**
+- Last 5 plans: —
+- Trend: —
+
+*Updated after each plan completion*
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- Brownfield: backend complete (52 e2e tests); v1 is frontend integration only
+- RTK Query for API layer; Bearer JWT from localStorage/cookie
+- Vertical MVP phases — each phase delivers end-to-end user capability
+- One-way friendship model — UI copy must reflect directed friendships
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- Frontend is Create Next App scaffold only — no Redux store, API client, or feature routes (`CONCERNS.md`)
+- No frontend tests yet — add once UI is implemented
+- Backend account delete has no Mongo transaction — accept for MVP; UI should handle 204 and redirect
+
+## Deferred Items
+
+| Category | Item | Status | Deferred At |
+|----------|------|--------|-------------|
+| Platform | CI pipeline (OPS-01) | v2 | 2026-06-04 |
+| Platform | Cross-platform smoke script (OPS-02) | v2 | 2026-06-04 |
+| Auth | Refresh tokens / password reset | Out of scope | 2026-06-04 |
+
+## Session Continuity
+
+Last session: 2026-06-04
+Stopped at: Roadmap and state initialized; ready for `/gsd-plan-phase 1`
+Resume file: None

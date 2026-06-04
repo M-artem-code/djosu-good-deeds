@@ -1,0 +1,90 @@
+# Roadmap: Djosu — Good Deeds
+
+## Overview
+
+Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the existing NestJS API. Each phase ships a complete user capability end-to-end: auth shell first, then own deeds, then friends and shared deeds, then profile/settings and UX polish. Backend rework is out of scope.
+
+## Phases
+
+**Phase Numbering:**
+- Integer phases (1, 2, 3, 4): Planned milestone work
+- Decimal phases (e.g. 2.1): Urgent insertions via `/gsd-phase insert`
+
+- [ ] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
+- [ ] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation
+- [ ] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag
+- [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
+
+## Phase Details
+
+### Phase 1: App Shell & Authentication
+**Goal**: Users can register, log in, stay authenticated, and navigate the app with protected routes
+**Mode:** mvp
+**Depends on**: Nothing (backend validated; frontend scaffold exists)
+**Requirements**: AUTH-FE-01, AUTH-FE-02, AUTH-FE-03, AUTH-FE-04, AUTH-FE-05, UX-01, UX-02, UX-03
+**Success Criteria** (what must be TRUE):
+  1. User can register with email, password, displayName, and tag; on success they are logged in and see the app shell
+  2. User can log in and remain logged in after browser refresh until logout or token expiry
+  3. User can log out and loses access to protected routes
+  4. Unauthenticated access to protected routes redirects to login
+  5. Responsive navigation between main sections works; Bearer token is attached to `/api` requests and API errors show user-visible messages (401 → login, 409 conflict, etc.)
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 2: My Deeds
+**Goal**: Users can manage their own deeds list end-to-end in the UI
+**Mode:** mvp
+**Depends on**: Phase 1
+**Requirements**: DEED-01, DEED-02, DEED-03, DEED-04, DEED-05
+**Success Criteria** (what must be TRUE):
+  1. User sees their deeds with planned/done status on the deeds page
+  2. User can create a deed with title and optional description
+  3. User can edit deed fields and change status to done
+  4. User can delete a deed from the list
+  5. Submitting empty or whitespace-only title shows validation error (400) without silent failure
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 3: Friends & Shared Deeds
+**Goal**: Users can manage friends and view friends' deeds by tag
+**Mode:** mvp
+**Depends on**: Phase 2
+**Requirements**: FRND-01, FRND-02, FRND-03, FRND-04, FRND-05, FRND-06
+**Success Criteria** (what must be TRUE):
+  1. User sees friends list with tag and displayName
+  2. User can add a friend by tag; duplicate friendship shows 409 with a clear message
+  3. User can remove an outgoing friendship from the list
+  4. User can revoke an incoming friendship by tag
+  5. User can open `/friends/[tag]` and see that friend's deeds (no email or other private fields)
+  6. Access to a non-friend or unknown tag shows the appropriate error (403/404 per API)
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 4: Profile, Settings & Polish
+**Goal**: Users can manage profile, delete their account, and experience polished list UX across the app
+**Mode:** mvp
+**Depends on**: Phase 3
+**Requirements**: PROF-01, PROF-02, PROF-03, UX-04
+**Success Criteria** (what must be TRUE):
+  1. User can view own profile (email, displayName, tag) on the settings page
+  2. User can update displayName and tag; validation errors (400) and conflicts (409) are shown inline
+  3. User can delete account with confirmation; on 204 they are redirected out of the app (login or public page)
+  4. List pages (deeds, friends) show loading indicators and helpful empty states when there is no data
+**Plans**: TBD
+**UI hint**: yes
+
+## Progress
+
+**Execution Order:**
+Phases execute in numeric order: 1 → 2 → 3 → 4
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| 1. App Shell & Authentication | 0/TBD | Not started | - |
+| 2. My Deeds | 0/TBD | Not started | - |
+| 3. Friends & Shared Deeds | 0/TBD | Not started | - |
+| 4. Profile, Settings & Polish | 0/TBD | Not started | - |
+
+---
+*Roadmap created: 2026-06-04*
+*Granularity: standard (4 phases, frontend vertical slices)*
