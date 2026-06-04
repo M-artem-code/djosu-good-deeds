@@ -12,7 +12,7 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 - Decimal phases (e.g. 2.1): Urgent insertions via `/gsd-phase insert`
 
 - [x] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
-- [ ] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation
+- [x] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation (completed 2026-06-04)
 - [ ] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove/revoke, friend deeds by tag
 - [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
 
@@ -68,15 +68,15 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — Deed types, getDeeds, view-only cards, sections, loading/empty (DEED-01)
+- [x] 02-01-PLAN.md — Deed types, getDeeds, view-only cards, sections, loading/empty (DEED-01)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — AddDeedForm, createDeed, validation mapping (DEED-02, DEED-05)
+- [x] 02-02-PLAN.md — AddDeedForm, createDeed, validation mapping (DEED-02, DEED-05)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 02-03-PLAN.md — Inline edit, status PATCH, delete modal (DEED-03, DEED-04)
+- [x] 02-03-PLAN.md — Inline edit, status PATCH, delete modal (DEED-03, DEED-04)
 
 ### Phase 3: Friends & Shared Deeds
 
@@ -120,7 +120,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
-| 2. My Deeds | 0/3 | Planned | - |
+| 2. My Deeds | 3/3 | Complete   | 2026-06-04 |
 | 3. Friends & Shared Deeds | 0/TBD | Not started | - |
 | 4. Profile, Settings & Polish | 0/TBD | Not started | - |
 
