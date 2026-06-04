@@ -14,7 +14,7 @@ Brownfield v1 delivers the Next.js frontend as vertical MVP slices against the e
 - [x] **Phase 1: App Shell & Authentication** - Redux, RTK Query, login/register, protected routes, global API client
 - [x] **Phase 2: My Deeds** - List, create, edit, delete own deeds with validation (completed 2026-06-04)
 - [x] **Phase 3: Friends & Shared Deeds** - Friends list, add/remove, friend deeds by tag (completed 2026-06-04)
-- [ ] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states
+- [x] **Phase 4: Profile, Settings & Polish** - Profile CRUD, delete account, loading/empty states (completed 2026-06-04)
 
 ## Phase Details
 
@@ -127,15 +127,15 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — Profile view + edit: getMe/updateMe, ProfileSettingsCard, auth sync (PROF-01, PROF-02)
+- [x] 04-01-PLAN.md — Profile view + edit: getMe/updateMe, ProfileSettingsCard, auth sync (PROF-01, PROF-02)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 04-02-PLAN.md — Delete account: deleteMe modal, clearSession redirect, login banner (PROF-03)
+- [x] 04-02-PLAN.md — Delete account: deleteMe modal, clearSession redirect, login banner (PROF-03)
 
 **Wave 3** *(blocked on Wave 1 completion; parallel-safe with Wave 2)*
 
-- [ ] 04-03-PLAN.md — List UX polish: skeletons, error+retry, empty copy on /deeds and /friends (UX-04)
+- [x] 04-03-PLAN.md — List UX polish: skeletons, error+retry, empty copy on /deeds and /friends (UX-04)
 
 ## Progress
 
@@ -147,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. App Shell & Authentication | 3/3 | Complete | 2026-06-04 |
 | 2. My Deeds | 3/3 | Complete   | 2026-06-04 |
 | 3. Friends & Shared Deeds | 2/3 | In Progress|  |
-| 4. Profile, Settings & Polish | 0/3 | Not started | - |
+| 4. Profile, Settings & Polish | 3/3 | Complete   | 2026-06-04 |
 
 ---
 *Roadmap created: 2026-06-04*
