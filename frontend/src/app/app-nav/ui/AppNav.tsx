@@ -4,7 +4,7 @@ import { LogoutConfirmModal } from "@/features/auth/logout";
 import { useAppSelector } from "@/shared/api";
 import { routes } from "@/shared/config";
 import { useDisclosure } from "@/shared/lib";
-import { TextButton } from "@/shared/ui";
+import { TextButton, ThemeToggle } from "@/shared/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -93,10 +93,12 @@ export function AppNav() {
               @{user.tag}
             </span>
           ) : null}
+          <ThemeToggle />
           <TextButton onClick={handleLogoutClick}>Log out</TextButton>
         </div>
 
         <div className="flex min-w-0 items-center gap-2 md:hidden">
+          <ThemeToggle />
           {user ? (
             <span className="max-w-[6rem] truncate font-mono text-sm font-normal text-zinc-600 sm:max-w-[8rem] dark:text-zinc-400">
               @{user.tag}

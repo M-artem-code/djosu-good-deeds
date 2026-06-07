@@ -10,8 +10,10 @@ export { cn } from "./cn";
 export {
   useDisclosure,
   useSelection,
+  useTheme,
   type Disclosure,
   type Selection,
+  type Theme,
 } from "./hooks";
 export {
   useMutationForm,
