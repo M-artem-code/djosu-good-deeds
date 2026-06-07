@@ -1,4 +1,5 @@
 export { Loader } from "./loader";
+export { Button, buttonVariants, type ButtonProps } from "./button";
 export { PrimaryButton } from "./primary-button";
 export { TextField } from "./text-field";
 export { TextButton } from "./text-button";

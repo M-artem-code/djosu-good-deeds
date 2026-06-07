@@ -1,4 +1,10 @@
 import type { ReactNode } from "react";
+import { cn } from "@/shared/lib";
+import {
+  controlVariants,
+  fieldErrorClass,
+  fieldLabelClass,
+} from "../field/field-variants";
 
 interface TextFieldProps {
   id: string;
@@ -23,7 +29,7 @@ export function TextField({
 }: TextFieldProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-normal leading-snug text-zinc-900 dark:text-zinc-50">
+      <label htmlFor={id} className={fieldLabelClass}>
         {label}
       </label>
       <div className="relative">
@@ -38,18 +44,15 @@ export function TextField({
           value={value}
           autoComplete={autoComplete}
           onChange={(event) => onChange(event.target.value)}
-          className={`h-11 w-full rounded-lg border bg-white px-3 text-base font-normal text-zinc-900 outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:ring-zinc-50 ${
-            prefix ? "pl-8" : ""
-          } ${
-            error
-              ? "border-red-600 dark:border-red-400"
-              : "border-zinc-200 dark:border-zinc-700"
-          }`}
+          aria-invalid={error ? true : undefined}
+          className={cn(
+            controlVariants({ invalid: Boolean(error) }),
+            "h-11 px-3",
+            prefix && "pl-8",
+          )}
         />
       </div>
-      {error ? (
-        <p className="text-sm font-normal text-red-600 dark:text-red-400">{error}</p>
-      ) : null}
+      {error ? <p className={fieldErrorClass}>{error}</p> : null}
     </div>
   );
 }

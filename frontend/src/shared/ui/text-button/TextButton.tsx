@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
+import { Button } from "../button";
 
 interface TextButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
   variant?: "default" | "destructive";
@@ -13,21 +14,16 @@ export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
     { children, onClick, type = "button", variant = "default", disabled },
     ref,
   ) {
-  const variantClass =
-    variant === "destructive"
-      ? "text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-      : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300";
-
     return (
-      <button
+      <Button
         ref={ref}
         type={type}
         onClick={onClick}
         disabled={disabled}
-        className={`min-h-[44px] px-1 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50 ${variantClass}`}
+        variant={variant === "destructive" ? "ghostDanger" : "ghost"}
       >
         {children}
-      </button>
+      </Button>
     );
   },
 );

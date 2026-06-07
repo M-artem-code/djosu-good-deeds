@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, type ReactNode } from "react";
+import { Button } from "../button";
 import { TextButton } from "../text-button";
 
 interface ConfirmDialogProps {
@@ -81,16 +82,18 @@ export function ConfirmDialog({
           >
             {cancelLabel}
           </TextButton>
-          <button
+          <Button
             type="button"
             onClick={() => void onConfirm()}
             disabled={isLoading}
-            className="flex h-11 min-h-[44px] w-full items-center justify-center rounded-lg bg-red-600 px-5 text-base font-normal text-white transition-opacity hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-600 dark:hover:bg-red-500 sm:w-auto"
+            variant="danger"
+            fullWidth
+            className="sm:w-auto"
           >
             {isLoading && confirmLoadingLabel
               ? confirmLoadingLabel
               : confirmLabel}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
