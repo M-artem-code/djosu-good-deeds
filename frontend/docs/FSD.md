@@ -58,3 +58,31 @@ Page chrome (`PageShell`, `PageHeader`, `ListQueryState`) is in **`shared/ui`**.
 
 - Store: `@/shared/api`
 - Endpoints: `entities/*/api`, `features/auth/api`
+
+## Shared building blocks
+
+| Модуль | Назначение |
+|--------|------------|
+| `@/shared/lib` → `cn()` | merge классов (`clsx` + `tailwind-merge`) |
+| `@/shared/lib` → `useMutationForm`, `buildPatch` | движок контролируемых форм над RTK Query (валидация → submit → маппинг ошибок) |
+| `@/shared/lib` → `useDisclosure`, `useSelection`, `useTheme` | общие хуки состояния и темы |
+| `@/shared/validation` | zod-схемы (зеркало DTO бэкенда) + `zodValidator` |
+| `@/shared/config` | `routes`, `loginWithReason` — никаких строковых путей в коде |
+| `@/shared/ui` → `Button`/`buttonVariants` | `cva`-варианты (primary/danger/ghost/ghostDanger) |
+| `@/shared/ui` → `ErrorBoundary`, `Toaster`, `ThemeToggle` | глобальный UX |
+
+### Форма за 4 строки
+
+```ts
+const form = useMutationForm({
+  initialValues,           // поля
+  isSubmitting: isLoading, // из RTK-мутации
+  validate: zodValidator(schema),
+  submit: (v) => mutation(v).unwrap(),
+  onSuccess,               // reset / redirect / dispatch
+  mappers, handle409, handle404, defaultFormError,
+});
+```
+
+Линтер границ: `npm run fsd:lint` (steiger, правило `fsd/forbidden-imports`).
+Проверки: `npm run lint && npm run typecheck && npm run fsd:lint && npm run test && npm run build`.
