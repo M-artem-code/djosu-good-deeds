@@ -1,57 +1,46 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { mapDeedFieldErrors } from "@/shared/api";
+import { useMutationForm } from "@/shared/lib";
 import {
-  handleFormMutationError,
-  mapDeedValidationErrors,
-} from "@/shared/api";
+  deedSchema,
+  zodValidator,
+  type DeedFormValues,
+} from "@/shared/validation";
 import type { DeedPublic } from "@/entities/deed";
 import { useUpdateDeedMutation } from "@/entities/deed";
 
-function mapDeedFieldErrors(message: string | string[]) {
-  const mapped = mapDeedValidationErrors(message);
-  return Object.keys(mapped).length > 0
-    ? mapped
-    : { title: "Title is required" as const };
-}
+const validateDeed = zodValidator<DeedFormValues>(deedSchema);
 
 export function useDeedEditForm(deed: DeedPublic, onSaved: () => void) {
   const [updateDeed, { isLoading }] = useUpdateDeedMutation();
-  const [title, setTitle] = useState(deed.title);
-  const [description, setDescription] = useState(deed.description ?? "");
-  const [fieldErrors, setFieldErrors] = useState<
-    Partial<Record<"title" | "description", string>>
-  >({});
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setFieldErrors({});
-
-    try {
-      await updateDeed({
+  const form = useMutationForm({
+    initialValues: {
+      title: deed.title,
+      description: deed.description ?? "",
+    } as DeedFormValues,
+    isSubmitting: isLoading,
+    validate: validateDeed,
+    submit: (values) =>
+      updateDeed({
         id: deed._id,
         body: {
-          title: title.trim(),
-          description: description.trim() || undefined,
+          title: values.title.trim(),
+          description: values.description.trim() || undefined,
         },
-      }).unwrap();
-      onSaved();
-    } catch (error) {
-      handleFormMutationError(error, {
-        onFieldErrors: (errors) =>
-          setFieldErrors(errors as Partial<Record<"title" | "description", string>>),
-        mappers: { map400: mapDeedFieldErrors },
-      });
-    }
-  };
+      }).unwrap(),
+    onSuccess: onSaved,
+    mappers: { map400: mapDeedFieldErrors },
+  });
 
   return {
-    title,
-    setTitle,
-    description,
-    setDescription,
-    fieldErrors,
-    isLoading,
-    handleSubmit,
+    title: form.values.title,
+    setTitle: (value: string) => form.setValue("title", value),
+    description: form.values.description,
+    setDescription: (value: string) => form.setValue("description", value),
+    fieldErrors: form.fieldErrors,
+    isLoading: form.isSubmitting,
+    handleSubmit: form.handleSubmit,
   };
 }

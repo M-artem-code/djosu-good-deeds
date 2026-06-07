@@ -2,15 +2,16 @@
 
 import { LogoutConfirmModal } from "@/features/auth/logout";
 import { useAppSelector } from "@/shared/api";
+import { routes } from "@/shared/config";
+import { useDisclosure } from "@/shared/lib";
 import { TextButton } from "@/shared/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 const NAV_LINKS = [
-  { href: "/deeds", label: "Deeds" },
-  { href: "/friends", label: "Friends" },
-  { href: "/settings", label: "Settings" },
+  { href: routes.deeds, label: "Deeds" },
+  { href: routes.friends, label: "Friends" },
+  { href: routes.settings, label: "Settings" },
 ] as const;
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -44,12 +45,12 @@ function MenuIcon({ open }: { open: boolean }) {
 export function AppNav() {
   const pathname = usePathname();
   const user = useAppSelector((state) => state.auth.user);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const menu = useDisclosure(false);
+  const logoutModal = useDisclosure(false);
 
   const handleLogoutClick = () => {
-    setMenuOpen(false);
-    setLogoutModalOpen(true);
+    menu.close();
+    logoutModal.open();
   };
 
   const linkClass = (href: string, mobile = false) => {
@@ -68,7 +69,7 @@ export function AppNav() {
     <header className="shrink-0 border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-4 md:px-6">
         <Link
-          href="/deeds"
+          href={routes.deeds}
           className="shrink-0 text-base font-semibold text-zinc-900 dark:text-zinc-50"
         >
           Djosu
@@ -105,17 +106,17 @@ export function AppNav() {
           <button
             type="button"
             className="flex h-11 min-h-[44px] w-11 shrink-0 items-center justify-center rounded-lg text-zinc-900 dark:text-zinc-50"
-            aria-expanded={menuOpen}
+            aria-expanded={menu.isOpen}
             aria-controls="mobile-nav-menu"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menu.isOpen ? "Close menu" : "Open menu"}
+            onClick={menu.toggle}
           >
-            <MenuIcon open={menuOpen} />
+            <MenuIcon open={menu.isOpen} />
           </button>
         </div>
       </div>
 
-      {menuOpen ? (
+      {menu.isOpen ? (
         <div
           id="mobile-nav-menu"
           className="border-t border-zinc-200 bg-white px-4 py-3 md:hidden dark:border-zinc-700 dark:bg-zinc-900"
@@ -126,7 +127,7 @@ export function AppNav() {
                 key={link.href}
                 href={link.href}
                 className={linkClass(link.href, true)}
-                onClick={() => setMenuOpen(false)}
+                onClick={menu.close}
               >
                 {link.label}
               </Link>
@@ -135,8 +136,8 @@ export function AppNav() {
         </div>
       ) : null}
 
-      {logoutModalOpen ? (
-        <LogoutConfirmModal onClose={() => setLogoutModalOpen(false)} />
+      {logoutModal.isOpen ? (
+        <LogoutConfirmModal onClose={logoutModal.close} />
       ) : null}
     </header>
   );

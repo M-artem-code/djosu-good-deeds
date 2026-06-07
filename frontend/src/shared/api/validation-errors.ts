@@ -62,3 +62,21 @@ export function mapFriendTagValidationErrors(
 
   return errors;
 }
+
+/** Maps deed 400 messages to field errors, falling back to a title error. */
+export function mapDeedFieldErrors(
+  message: string | string[],
+): Partial<Record<"title" | "description", string>> {
+  const mapped = mapDeedValidationErrors(message);
+  return Object.keys(mapped).length > 0
+    ? mapped
+    : { title: "Title is required" };
+}
+
+/** Maps friend-tag 400 messages to a tag field error, with a sane fallback. */
+export function mapFriendTagFieldErrors(
+  message: string | string[],
+): Partial<Record<"tag", string>> {
+  const mapped = mapFriendTagValidationErrors(message);
+  return Object.keys(mapped).length > 0 ? mapped : { tag: "Enter a valid tag" };
+}

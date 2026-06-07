@@ -7,6 +7,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { getApiMessage } from "../errors";
 import { getStoredToken } from "@/shared/lib";
+import { loginWithReason } from "@/shared/config";
 import { clearAuthSession } from "./clear-auth-session";
 import { setBannerMessage } from "./ui-slice";
 import type { RootState } from "./store";
@@ -43,7 +44,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     if (status === 401) {
       clearAuthSession(api.dispatch);
       if (typeof window !== "undefined") {
-        window.location.href = "/login?reason=session_expired";
+        window.location.href = loginWithReason("session_expired");
       }
     } else if (
       status === "FETCH_ERROR" ||

@@ -1,70 +1,51 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { mapDeedFieldErrors } from "@/shared/api";
+import { useCollapsibleForm, useMutationForm } from "@/shared/lib";
 import {
-  handleFormMutationError,
-  mapDeedValidationErrors,
-} from "@/shared/api";
-import { useCollapsibleForm } from "@/shared/lib";
+  deedSchema,
+  zodValidator,
+  type DeedFormValues,
+} from "@/shared/validation";
 import { useCreateDeedMutation } from "@/entities/deed";
 
-function mapDeedFieldErrors(message: string | string[]) {
-  const mapped = mapDeedValidationErrors(message);
-  return Object.keys(mapped).length > 0
-    ? mapped
-    : { title: "Title is required" as const };
-}
+const validateDeed = zodValidator<DeedFormValues>(deedSchema);
 
 export function useAddDeedForm(deedCount: number) {
   const [createDeed, { isLoading }] = useCreateDeedMutation();
   const { expanded, reveal, collapse } = useCollapsibleForm(deedCount);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<
-    Partial<Record<"title" | "description", string>>
-  >({});
 
-  const resetFields = () => {
-    setTitle("");
-    setDescription("");
-    setFieldErrors({});
-  };
+  const form = useMutationForm({
+    initialValues: { title: "", description: "" } as DeedFormValues,
+    isSubmitting: isLoading,
+    validate: validateDeed,
+    submit: (values) =>
+      createDeed({
+        title: values.title.trim(),
+        description: values.description.trim() || undefined,
+      }).unwrap(),
+    onSuccess: () => {
+      form.reset();
+      collapse();
+    },
+    mappers: { map400: mapDeedFieldErrors },
+  });
 
   const handleCollapse = () => {
     collapse();
-    resetFields();
-  };
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setFieldErrors({});
-
-    try {
-      await createDeed({
-        title: title.trim(),
-        description: description.trim() || undefined,
-      }).unwrap();
-      resetFields();
-      collapse();
-    } catch (error) {
-      handleFormMutationError(error, {
-        onFieldErrors: (errors) =>
-          setFieldErrors(errors as Partial<Record<"title" | "description", string>>),
-        mappers: { map400: mapDeedFieldErrors },
-      });
-    }
+    form.reset();
   };
 
   return {
     expanded,
     reveal,
     handleCollapse,
-    title,
-    setTitle,
-    description,
-    setDescription,
-    fieldErrors,
-    isLoading,
-    handleSubmit,
+    title: form.values.title,
+    setTitle: (value: string) => form.setValue("title", value),
+    description: form.values.description,
+    setDescription: (value: string) => form.setValue("description", value),
+    fieldErrors: form.fieldErrors,
+    isLoading: form.isSubmitting,
+    handleSubmit: form.handleSubmit,
   };
 }

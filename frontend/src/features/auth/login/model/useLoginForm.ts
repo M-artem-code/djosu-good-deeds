@@ -1,54 +1,55 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
 import { useLoginMutation } from "@/features/auth/api";
 import {
   establishAuthSession,
-  handleAuthMutationError,
+  mapConflictError,
+  mapValidationErrors,
   useAppDispatch,
 } from "@/shared/api";
+import { useMutationForm } from "@/shared/lib";
+import { routes } from "@/shared/config";
+import {
+  loginSchema,
+  zodValidator,
+  type LoginFormValues,
+} from "@/shared/validation";
+
+const validateLogin = zodValidator<LoginFormValues>(loginSchema);
 
 export function useLoginForm() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setFieldErrors({});
-    setFormError(null);
-
-    try {
-      const result = await login({ email, password }).unwrap();
+  const form = useMutationForm({
+    initialValues: { email: "", password: "" } as LoginFormValues,
+    isSubmitting: isLoading,
+    validate: validateLogin,
+    submit: (values) =>
+      login({ email: values.email, password: values.password }).unwrap(),
+    onSuccess: (result) => {
       establishAuthSession(dispatch, {
         accessToken: result.accessToken,
         user: result.user,
       });
-      router.push("/deeds");
-    } catch (error) {
-      handleAuthMutationError(error, {
-        onFieldErrors: setFieldErrors,
-        onFormError: setFormError,
-        defaultFormError: "Invalid credentials",
-      });
-    }
-  };
+      router.push(routes.deeds);
+    },
+    mappers: { map400: mapValidationErrors, map409: mapConflictError },
+    defaultFormError: "Invalid credentials",
+  });
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    fieldErrors,
-    formError,
-    setFormError,
-    isLoading,
-    handleSubmit,
+    email: form.values.email,
+    setEmail: (value: string) => form.setValue("email", value),
+    password: form.values.password,
+    setPassword: (value: string) => form.setValue("password", value),
+    fieldErrors: form.fieldErrors,
+    formError: form.formError,
+    setFormError: form.setFormError,
+    isLoading: form.isSubmitting,
+    handleSubmit: form.handleSubmit,
   };
 }
 

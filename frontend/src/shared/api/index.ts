@@ -31,6 +31,8 @@ export {
   mapConflictError,
   mapDeedValidationErrors,
   mapFriendTagValidationErrors,
+  mapDeedFieldErrors,
+  mapFriendTagFieldErrors,
 } from "./validation-errors";
 export {
   type FieldErrors,

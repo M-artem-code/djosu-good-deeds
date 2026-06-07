@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useSelection } from "@/shared/lib";
 import type { DeedPublic } from "@/entities/deed";
 
 export function useDeedListState() {
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [deleteTarget, setDeleteTarget] = useState<DeedPublic | null>(null);
+  const editing = useSelection<string>();
+  const deletion = useSelection<DeedPublic>();
 
   return {
-    editingId,
-    startEdit: (id: string) => setEditingId(id),
-    cancelEdit: () => setEditingId(null),
-    deleteTarget,
-    requestDelete: (deed: DeedPublic) => setDeleteTarget(deed),
-    clearDelete: () => setDeleteTarget(null),
+    editingId: editing.selected,
+    startEdit: editing.select,
+    cancelEdit: editing.clear,
+    deleteTarget: deletion.selected,
+    requestDelete: deletion.select,
+    clearDelete: deletion.clear,
   };
 }

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import { useAppSelector } from "@/shared/api";
+import { routes } from "@/shared/config";
 
 interface GuestAuthGuardProps {
   children: ReactNode;
@@ -14,7 +15,7 @@ export function GuestAuthGuard({ children }: GuestAuthGuardProps) {
 
   useEffect(() => {
     if (!isHydrating && accessToken && user) {
-      router.replace("/deeds");
+      router.replace(routes.deeds);
     }
   }, [accessToken, user, isHydrating, router]);
 

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import { Loader } from "@/shared/ui";
 import { useAppSelector } from "@/shared/api";
+import { routes } from "@/shared/config";
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -15,7 +16,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   useEffect(() => {
     if (!isHydrating && !accessToken) {
-      router.replace("/login");
+      router.replace(routes.login);
     }
   }, [accessToken, isHydrating, router]);
 

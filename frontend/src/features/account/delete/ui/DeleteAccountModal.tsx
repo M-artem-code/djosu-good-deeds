@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ConfirmDialog } from "@/shared/ui";
 import { clearAuthSession, useAppDispatch } from "@/shared/api";
+import { loginWithReason } from "@/shared/config";
 import { useDeleteMeMutation } from "@/entities/user";
 
 interface DeleteAccountModalProps {
@@ -18,7 +19,7 @@ export function DeleteAccountModal({ onClose }: DeleteAccountModalProps) {
     try {
       await deleteMe().unwrap();
       clearAuthSession(dispatch);
-      router.replace("/login?reason=account_deleted");
+      router.replace(loginWithReason("account_deleted"));
     } catch {
       // Errors surface via baseApi ErrorBanner
     }

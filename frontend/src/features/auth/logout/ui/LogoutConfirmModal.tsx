@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ConfirmDialog } from "@/shared/ui";
 import { clearAuthSession, useAppDispatch } from "@/shared/api";
+import { routes } from "@/shared/config";
 
 interface LogoutConfirmModalProps {
   onClose: () => void;
@@ -14,7 +15,7 @@ export function LogoutConfirmModal({ onClose }: LogoutConfirmModalProps) {
 
   const handleConfirm = () => {
     clearAuthSession(dispatch);
-    router.push("/login");
+    router.push(routes.login);
   };
 
   return (

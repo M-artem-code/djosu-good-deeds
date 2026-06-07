@@ -9,7 +9,7 @@ export const routes = {
   settings: "/settings",
 } as const;
 
-export type AuthRedirectReason = "session_expired" | "logged_out";
+export type AuthRedirectReason = "session_expired" | "account_deleted";
 
 /** Builds the login URL carrying an optional `?reason=` banner hint. */
 export function loginWithReason(reason: AuthRedirectReason): string {

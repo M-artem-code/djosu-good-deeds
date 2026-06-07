@@ -1,67 +1,70 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
 import { useRegisterMutation } from "@/features/auth/api";
 import {
   establishAuthSession,
-  handleAuthMutationError,
+  mapConflictError,
+  mapValidationErrors,
   useAppDispatch,
 } from "@/shared/api";
+import { normalizeTag, useMutationForm } from "@/shared/lib";
+import { routes } from "@/shared/config";
+import {
+  registerSchema,
+  zodValidator,
+  type RegisterFormValues,
+} from "@/shared/validation";
+
+const validateRegister = zodValidator<RegisterFormValues>(registerSchema);
 
 export function useRegisterForm() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [register, { isLoading }] = useRegisterMutation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [tag, setTag] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setFieldErrors({});
-    setFormError(null);
-
-    try {
-      const result = await register({
-        email,
-        password,
-        displayName,
-        tag: tag.trim().toLowerCase(),
-      }).unwrap();
+  const form = useMutationForm({
+    initialValues: {
+      email: "",
+      password: "",
+      displayName: "",
+      tag: "",
+    } as RegisterFormValues,
+    isSubmitting: isLoading,
+    validate: validateRegister,
+    submit: (values) =>
+      register({
+        email: values.email,
+        password: values.password,
+        displayName: values.displayName,
+        tag: normalizeTag(values.tag),
+      }).unwrap(),
+    onSuccess: (result) => {
       establishAuthSession(dispatch, {
         accessToken: result.accessToken,
         user: result.user,
       });
-      router.push("/deeds");
-    } catch (error) {
-      handleAuthMutationError(error, {
-        onFieldErrors: setFieldErrors,
-        onFormError: setFormError,
-        defaultFormError:
-          "Something went wrong. Try again or sign in again.",
-        handle409: true,
-      });
-    }
-  };
+      router.push(routes.deeds);
+    },
+    mappers: { map400: mapValidationErrors, map409: mapConflictError },
+    handle409: true,
+    defaultFormError: "Something went wrong. Try again or sign in again.",
+  });
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    displayName,
-    setDisplayName,
-    tag,
-    setTag,
-    fieldErrors,
-    formError,
-    setFormError,
-    isLoading,
-    handleSubmit,
+    email: form.values.email,
+    setEmail: (value: string) => form.setValue("email", value),
+    password: form.values.password,
+    setPassword: (value: string) => form.setValue("password", value),
+    displayName: form.values.displayName,
+    setDisplayName: (value: string) => form.setValue("displayName", value),
+    tag: form.values.tag,
+    setTag: (value: string) => form.setValue("tag", value),
+    fieldErrors: form.fieldErrors,
+    formError: form.formError,
+    setFormError: form.setFormError,
+    isLoading: form.isSubmitting,
+    handleSubmit: form.handleSubmit,
   };
 }
 
